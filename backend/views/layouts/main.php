@@ -4,10 +4,13 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use backend\components\Topbar;
+use backend\components\Sidebar;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+// assets\AppAsset.php
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -20,51 +23,44 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
+<body class="hold-transition skin-blue sidebar-mini">
     <?php $this->beginBody() ?>
-    <div class="wrap">
-        <?php
-            NavBar::begin([
-                'brandLabel' => 'My Company',
-                'brandUrl' => Yii::$app->homeUrl,
-                'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top',
-                ],
-            ]);
-            $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
-            ];
-            if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-            } else {
-                $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']
-                ];
-            }
-            echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => $menuItems,
-            ]);
-            NavBar::end();
-        ?>
+	<div class="wrapper">
+      <!-- Top header colum -->
+	  <header class="main-header">
+	  <?php echo Topbar::widget();?>
+	  </header>
+	  
+	  <!-- Left side column. contains the logo and sidebar -->
+	   <aside class="main-sidebar">
+	    <?php echo Sidebar::widget();?>
+	   </aside>
+	    
+	    
+	   <!-- Content Wrapper. Contains page content --> 
+	   <div class="content-wrapper">
+	    <!-- Content Header (Page header) -->
+		    <section class="content-header">
+		      <h1>
+		      	  ทดสอบ หน้าหลัก
+		        <small>Control panel</small>
+		      </h1>
+		      <?= Breadcrumbs::widget([
+		            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+		        ]) ?>
+		        <?= $content ?>
+		    </section>
+	  
+	   </div>
+	   <!-- /.content-wrapper -->
 
-        <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= $content ?>
-        </div>
-    </div>
+	   <!-- footer -->
+	   <footer class="main-footer">
+	   
+	   </footer>
 
-    <footer class="footer">
-        <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
-        </div>
-    </footer>
-
+	    <div class="control-sidebar-bg"></div>
+	   </div>
     <?php $this->endBody() ?>
 </body>
 </html>
