@@ -18,6 +18,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+    	//AdminLTE
         'css/site.css',
 	    	//	<!-- Bootstrap 3.3.6 -->
 	    	'bootstrap/css/bootstrap.min.css',
@@ -44,7 +45,8 @@ class AppAsset extends AssetBundle
     		'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
     		// <!-- bootstrap wysihtml5 - text editor -->
     		'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
-    		
+    		// <!-- DataTables -->
+    		'plugins/datatables/dataTables.bootstrap.css',
     	
     ];
     public $js = [
@@ -55,8 +57,8 @@ class AppAsset extends AssetBundle
     		//<!-- Bootstrap 3.3.6 -->
     		'bootstrap/js/bootstrap.min.js',
     		//<!-- Morris.js charts -->
-    		'raphael-min.js',
-    		'plugins/morris/morris.min.js',
+    		//'raphael-min.js',
+    		//'plugins/morris/morris.min.js',
     		//<!-- Sparkline -->
     		'plugins/sparkline/jquery.sparkline.min.js',
     		//<!-- jvectormap -->
@@ -76,10 +78,14 @@ class AppAsset extends AssetBundle
     		//<!-- FastClick -->
     		'plugins/fastclick/fastclick.js',
     		
+    		//Data Table
+    		'plugins/datatables/jquery.dataTables.min.js',
+    		'plugins/datatables/dataTables.bootstrap.min.js',
+    		
     		//<!-- AdminLTE App -->
     		'dist/js/app.min.js',
     		//<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    		'dist/js/pages/dashboard.js',
+    		//'dist/js/pages/dashboard.js',
     		//<!-- AdminLTE for demo purposes -->
     		'dist/js/demo.js',
     		

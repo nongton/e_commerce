@@ -18,7 +18,7 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
+          /*   'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
@@ -31,7 +31,7 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                 ],
-            ],
+            ], */
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -56,6 +56,15 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+    
+    public function actionTest()
+    {
+    	return $this->render('test');
+    }
+    public function actionTestt()
+    {
+    	return $this->render('testt');
     }
 
     public function actionLogin()

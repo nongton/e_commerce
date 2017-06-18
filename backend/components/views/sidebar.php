@@ -48,8 +48,20 @@ $this->registerJs($str);
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i>หน้าหลัก</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> หน้าสรุปรายการสินค้า</a></li>
+            <li class="<?php if($baseUrl.'/site/index' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl;?>/site/index"><i class="fa fa-circle-o"></i>หน้าหลัก</a></li>
+            
+          </ul>
+        </li>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-cart-arrow-down"></i> <span>Product</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          
+            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/list"><i class="fa fa-circle-o"></i> รายการสินค้า</a></li>
           </ul>
         </li>
         <li class="treeview">

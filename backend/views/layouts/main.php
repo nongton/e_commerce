@@ -10,7 +10,7 @@ use backend\components\Sidebar;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-// assets\AppAsset.php
+// assets\AppAsset.php frome AdminLTE
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -19,6 +19,7 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -41,10 +42,7 @@ AppAsset::register($this);
 	   <div class="content-wrapper">
 	    <!-- Content Header (Page header) -->
 		    <section class="content-header">
-		      <h1>
-		      	  ทดสอบ หน้าหลัก
-		        <small>Control panel</small>
-		      </h1>
+		      
 		      <?= Breadcrumbs::widget([
 		            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 		        ]) ?>
@@ -62,6 +60,19 @@ AppAsset::register($this);
 	    <div class="control-sidebar-bg"></div>
 	   </div>
     <?php $this->endBody() ?>
+    <script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>
