@@ -48,52 +48,57 @@ $this->registerJs($str);
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="<?php if($baseUrl.'/site/index' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl;?>/site/index"><i class="fa fa-circle-o"></i>หน้าหลัก</a></li>
+            <li class="<?php if($baseUrl.'/site/index' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl;?>/site/index"><i class="fa fa-circle-o"></i>Home</a></li>
             
           </ul>
         </li>
         <li class="active treeview">
           <a href="#">
-            <i class="fa fa-cart-arrow-down"></i> <span>Product</span>
+            <i class="fa   fa-edit "></i> <span>Edit data</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
           
-            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/list"><i class="fa fa-circle-o"></i> รายการสินค้า</a></li>
+            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/list"><i class="fa fa-circle-o"></i> Product</a></li>
+          </ul>
+          <ul class="treeview-menu">
+          
+            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/list"><i class="fa fa-circle-o"></i> Product Type</a></li>
+          </ul>
+          <ul class="treeview-menu">
+          
+            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/list"><i class="fa fa-circle-o"></i> User</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="active treeview">
           <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Layout Options</span>
+            <i class="fa  fa-sticky-note-o"></i> <span>Report</span>
             <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
+              <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-            <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+          
+            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/list"><i class="fa fa-circle-o"></i> Customer</a></li>
           </ul>
+          <ul class="treeview-menu">
+          
+            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/list"><i class="fa fa-circle-o"></i>Product</a></li>
+          </ul>
+          <ul class="treeview-menu">
+          
+            <li class="<?php if($baseUrl.'/product/listtype' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/list"><i class="fa fa-circle-o"></i>Product Type</a></li>
+          </ul>
+          <ul class="treeview-menu">
+         
         </li>
-        <li>
-          <a href="pages/widgets.html">
-            <i class="fa fa-th"></i> <span>Widgets</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
-          </a>
-        </li>
+       
+        
 
 
-        <li><a href="documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-        <li class="header">LABELS</li>
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+        
       </ul>
     </section>
     <!-- /.sidebar -->

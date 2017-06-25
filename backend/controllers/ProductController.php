@@ -16,6 +16,10 @@ class ProductController extends Controller
 	{
 		return $this->render('list');
 	}
+	public function actionListtype()
+	{
+		return $this->render('listtype');
+	}
 	
 	
 	
