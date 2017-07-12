@@ -21,10 +21,12 @@ $this->registerJs($str);
         <div class="pull-left image">
           <img src="<?php echo $baseUrl; ?>/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
+         <?php if ($user): ?>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p> <?php echo $user->firstName.' '.$user->lastName; ?></p>
           <a href="<?php echo $baseUrl; ?>"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
+        <?php endif;?>
       </div>
       <!-- search form -->
       <form action="#" method="get" class="sidebar-form">
@@ -69,7 +71,7 @@ $this->registerJs($str);
           </ul>
           <ul class="treeview-menu">
           
-            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/list"><i class="fa fa-circle-o"></i> User</a></li>
+            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/user/list"><i class="fa fa-circle-o"></i> User</a></li>
           </ul>
         </li>
         <li class="active treeview">

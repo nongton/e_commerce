@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\LoginForm;
+use common\models\Product;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -12,7 +13,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-
+use yii\data\Pagination;
 /**
  * Site controller
  */
@@ -114,6 +115,33 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+    
+    public function actionProduct()
+    {
+    	// query data all product  frome product table
+    	$productQuery = Product::find();
+    	$productQuery->orderBy(['id' => SORT_ASC]);  // sort by id
+    	
+    	// add Pagination
+    	$pagination = new Pagination([
+    			'defaultPageSize' => 8, // set per page
+    			'totalCount' => $productQuery->count(),
+    	]);
+    	
+    	$lstProduct= $productQuery->orderBy('id ASC')
+    	->offset($pagination->offset)
+    	->limit($pagination->limit)
+    	->all();
+    	$pagination->params = ['page'=> $pagination->page];
+    	
+    	//var_dump($objProduct); exit();
+    	
+    	return $this->render('product',[
+    			'lstProduct'=>$lstProduct,
+    			'pagination'=>$pagination,
+    			
+    	]);
     }
 
     public function actionSignup()

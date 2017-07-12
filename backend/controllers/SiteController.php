@@ -6,6 +6,8 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
+use yii\helpers\Html;
 
 /**
  * Site controller
@@ -18,24 +20,29 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-          /*   'access' => [
+             'access' => [
                 'class' => AccessControl::className(),
+             	'only' => ['logout', 'login','index'],
                 'rules' => [
+                	[
+                		'allow' => true,
+                		'roles' => ['@'],
+                	],
                     [
                         'actions' => ['login', 'error'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                 ],
-            ], */
+            ], 
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['get'],
                 ],
             ],
         ];
@@ -57,6 +64,11 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+    public function actionHome()
+    {
+    	$this->layout = 'home';
+    	return $this->render('home');
+    }
     
     public function actionTest()
     {
@@ -70,9 +82,9 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
+        	$this->redirect(Url::toRoute('site/home'));
         }
-
+        $this->layout = 'login';
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();

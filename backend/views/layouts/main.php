@@ -4,9 +4,11 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+Use app\Ui;
+
 use backend\components\Topbar;
 use backend\components\Sidebar;
-
+use backend\components\Message;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
@@ -42,13 +44,17 @@ AppAsset::register($this);
 	   <div class="content-wrapper">
 	    <!-- Content Header (Page header) -->
 		    <section class="content-header">
-		      
+		    <h1><?php echo $this->title ;?></h1>
 		      <?= Breadcrumbs::widget([
 		            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 		        ]) ?>
-		        <?= $content ?>
+		      <?php echo Message::widget() ?>
 		    </section>
-	  
+		    
+	<!-- Main content -->
+    <section class="content">
+	   <?= $content ?>
+	  </section>
 	   </div>
 	   <!-- /.content-wrapper -->
 
@@ -60,19 +66,7 @@ AppAsset::register($this);
 	    <div class="control-sidebar-bg"></div>
 	   </div>
     <?php $this->endBody() ?>
-    <script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
-</script>
+   
 </body>
 </html>
 <?php $this->endPage() ?>

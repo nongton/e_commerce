@@ -1,61 +1,139 @@
+<?php 
+use yii\web\View;
+use yii\bootstrap\Html;
+use yii\widgets\LinkPager;
+use yii\helpers\Url;
+use yii\helpers\BaseUrl;
+use yii\widgets\ActiveForm;
+
+$this->title = "Product List";
+$baseUrl = \Yii::getAlias('@web');
+$user = Yii::$app->user->getIdentity();
+
+$str = <<<EOT
+$(document).ready(function() {
+debugger;
+	$('#delete').click(function() {
+debugger;
+		   postAction('delete');
+	});
+	$('#search').click(function() {
+	
+			postAction('search');
+	});
+});
+
+function postAction(action) {
+debugger;
+	$( "#dataTable-form" ).removeAttr("target");
+	$('#op').val(action);
+debugger;
+	if(action == 'delete'){
+	
+		if(! confirm("คุณแน่ใจว่าต้องการจะลบรายการที่เลือกไว้ ?")){
+			$('div.checker span').removeClass('checked');
+		}
+	}
+	
+	$('#dataTable').submit();
+}
+
+
+
+EOT;
+
+$this->registerJs($str, View::POS_LOAD, 'form-js');
+?>
+
+
+<form  id="dataTable" action="<?php echo $baseUrl ;?>/product/list" method="POST">
 <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Responsive Hover Table</h3>
+        <div class="col-md-3">
+          <a href="<?php echo $baseUrl ;?>/product/add" class="btn btn-primary btn-block margin-bottom">ADD NEWS PRODUCT</a>
+
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Product Type</h3>
 
               <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
               </div>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                <tr>
-                  <th>ID</th>
-                  <th>User</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Reason</th>
-                </tr>
-                <tr>
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>219</td>
-                  <td>Alexander Pierce</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-warning">Pending</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>657</td>
-                  <td>Bob Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-primary">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>175</td>
-                  <td>Mike Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-danger">Denied</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-              </table>
+            <div class="box-body no-padding">
+              <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#"><i class="fa fa-inbox"></i> TYPE 1<span class="label label-warning pull-right">5</span></a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> TYPE 2 <span class="label label-warning pull-right">10</span></a></li>
+                <li><a href="#"><i class="fa fa-file-text-o"></i> TYPE 3 <span class="label label-warning pull-right">120</span> </a></li>
+              </ul>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /. box -->
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">STATUS</h3>
+
+              <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body no-padding">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href="#"><i class="fa fa-circle-o text-red"></i> ACTIVE <span class="label label-primary pull-right">120</span>  </a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> DELETE  <span class="label label-primary pull-right">20</span></a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i>WAITING <span class="label label-primary pull-right">25</span> </a></li>
+              </ul>
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
         </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Product List</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>ID</th>
+                  <th>Product Name</th>
+                  <th>Product Pic</th>
+                  <th>Product Detail</th>
+                  <th>Product Price</th>
+                  <th>Product Quantity</th>
+                </tr>
+                
+                <?php if($lstProduct):
+                foreach ($lstProduct as $index=>$data):
+                ?>
+                <tr>
+                  <td><span class="label label-success"><?php echo $data['Id']?></span></td>
+                  <td><?php echo $data['productName']?></td>
+                  <td> </td>
+                  <td><?php echo $data['productDetail']?></td>
+                  <td><?php echo $data['productPrice']?></td>
+                  <td><span class="label label-success"><?php echo $data['productQuantity']?></span> </td>
+                </tr>
+                <?php endforeach; endif;?>
+                
+              </table>
+              <div class="pull-right box-tools">
+              	<?php echo LinkPager::widget(['pagination' => $pagination]);?>
+              </div>
+            </div>
+              <!-- /.mail-box-messages -->
+            </div>
+          </div>
+          <!-- /. box -->
+        </div>
+        <!-- /.col -->
       </div>
+      
+<?= Html::hiddenInput('op','',['id'=>'op']);?>
+</form>     
