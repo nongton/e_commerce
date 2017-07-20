@@ -1,10 +1,24 @@
 <?php
 use yii\bootstrap\Html;
+use yii\helpers\Url;
 use yii\widgets\LinkPager;
+$baseUrl = \Yii::getAlias('@web');
 /* @var $this yii\web\View */
 $this->title = 'Product';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+ <div class="row">
+<div class ="col-md-2">
+<h3>ประเภทสินค้า</h3>
+<ul class="nav nav-pills nav-stacked">
+<li role="presentation" class="<?php if($baseUrl.'/site/product' == Url::current() ){ echo "active"; }?>" ><a href="<?php echo $baseUrl;?>/site/product">all Type</a></li>
+<?php if($lstProductType):
+	foreach ($lstProductType as $indexType=>$dataType): ?>
+  <li role="presentation" class="<?php if($baseUrl.'/site/product?type='.$dataType['Id'] == Url::current() ){ echo "active"; }?>" ><a href="<?php echo $baseUrl;?>/site/product?type=<?php echo $dataType['Id']?>"><?php echo $dataType['typeName']?></a></li>
+  <?php endforeach; endif;?>
+</ul>
+</div>
+<div class ="col-md-10">
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -31,3 +45,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class=" row">
               	<?php echo LinkPager::widget(['pagination' => $pagination]);?>
               </div>
+</div>
+</div>
+</div>

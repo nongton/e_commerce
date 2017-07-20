@@ -67,11 +67,23 @@ $this->registerJs($str);
           </ul>
           <ul class="treeview-menu">
           
-            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/list"><i class="fa fa-circle-o"></i> Product Type</a></li>
+            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/listtype"><i class="fa fa-circle-o"></i> Product Type</a></li>
           </ul>
           <ul class="treeview-menu">
           
             <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/user/list"><i class="fa fa-circle-o"></i> User</a></li>
+          </ul>
+          <ul class="treeview-menu">
+          
+            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/user/list"><i class="fa fa-circle-o"></i> Stock</a></li>
+          </ul>
+          <ul class="treeview-menu">
+          
+            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/user/list"><i class="fa fa-circle-o"></i> Payment</a></li>
+          </ul>
+          <ul class="treeview-menu">
+          
+            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/user/list"><i class="fa fa-circle-o"></i> Order</a></li>
           </ul>
         </li>
         <li class="active treeview">
@@ -91,7 +103,7 @@ $this->registerJs($str);
           </ul>
           <ul class="treeview-menu">
           
-            <li class="<?php if($baseUrl.'/product/listtype' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/list"><i class="fa fa-circle-o"></i>Product Type</a></li>
+            <li class="<?php if($baseUrl.'/product/listtype' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/listtype"><i class="fa fa-circle-o"></i>Product Type</a></li>
           </ul>
           <ul class="treeview-menu">
          

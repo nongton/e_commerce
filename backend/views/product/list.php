@@ -17,6 +17,7 @@ debugger;
 debugger;
 		   postAction('delete');
 	});
+
 	$('#search').click(function() {
 	
 			postAction('search');
@@ -62,9 +63,13 @@ $this->registerJs($str, View::POS_LOAD, 'form-js');
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><i class="fa fa-inbox"></i> TYPE 1<span class="label label-warning pull-right">5</span></a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> TYPE 2 <span class="label label-warning pull-right">10</span></a></li>
-                <li><a href="#"><i class="fa fa-file-text-o"></i> TYPE 3 <span class="label label-warning pull-right">120</span> </a></li>
+              <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; }?>"><a href="<?php echo $baseUrl;?>/product/list"><i class="fa fa-inbox"></i> ALL TYPE<span class="label label-warning pull-right">5</span></a></li>
+               <?php if($lstProductType):
+               foreach ($lstProductType as $indexType=>$dataType): ?>
+               
+                <li class="<?php if($baseUrl.'/product/list?type='.$dataType['Id'] == Url::current() ){ echo "active"; }?>" ><a href="<?php echo $baseUrl;?>/product/list?type=<?php echo $dataType['Id']?>"><i class="fa fa-inbox"></i> <?php echo $dataType['typeName']?><span class="label label-warning pull-right">5</span></a></li>
+               
+                <?php endforeach; endif;?>
               </ul>
             </div>
             <!-- /.box-body -->
@@ -107,6 +112,7 @@ $this->registerJs($str, View::POS_LOAD, 'form-js');
                   <th>Product Detail</th>
                   <th>Product Price</th>
                   <th>Product Quantity</th>
+                  <th>Tool</th>
                 </tr>
                 
                 <?php if($lstProduct):
@@ -119,6 +125,10 @@ $this->registerJs($str, View::POS_LOAD, 'form-js');
                   <td><?php echo $data['productDetail']?></td>
                   <td><?php echo $data['productPrice']?></td>
                   <td><span class="label label-success"><?php echo $data['productQuantity']?></span> </td>
+                  <td>
+                  
+                  <a href="<?php echo $baseUrl ;?>/product/add?id=<?php echo $data['Id']; // ส่ง id ไปยัง actionDelete เพื่อลบสินค้าชิ้นนี้ ?>" class="btn btn-default btn-sm" ><i class="fa fa-edit"></i></a>
+                  <a href="<?php echo $baseUrl ;?>/product/delete?id=<?php echo $data['Id']; // ส่ง id ไปยัง actionDelete เพื่อลบสินค้าชิ้นนี้ ?>" class="btn btn-default btn-sm" ><i class="fa fa-trash-o"></i></a>
                 </tr>
                 <?php endforeach; endif;?>
                 

@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\LoginForm;
 use common\models\Product;
+use common\models\Producttype;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -119,8 +120,20 @@ class SiteController extends Controller
     
     public function actionProduct()
     {
+    	$request = \Yii::$app->request;
+    	$type = $request->get('type','');
+    	
+    	//  query data all product Type
+    	$productTypeQuery = Producttype::find();
+    	$productTypeQuery->orderBy(['id' => SORT_ASC]); 
+    	$lstProductType = $productTypeQuery->all();
+    	
+    	
     	// query data all product  frome product table
     	$productQuery = Product::find();
+    	if(!empty($type)){
+    	$productQuery->andWhere(['productType' => $type]);
+    	}
     	$productQuery->orderBy(['id' => SORT_ASC]);  // sort by id
     	
     	// add Pagination
@@ -139,6 +152,7 @@ class SiteController extends Controller
     	
     	return $this->render('product',[
     			'lstProduct'=>$lstProduct,
+    			'lstProductType'=>$lstProductType,
     			'pagination'=>$pagination,
     			
     	]);

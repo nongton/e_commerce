@@ -6,7 +6,6 @@ use yii\widgets\ActiveForm;
 use yii\widgets\LinkPager;
 use yii\web\View;
 use common\models\User;
-use common\models\Product;
 
 $this->title = "ADD NEWS  PRODUCT";
 $baseUrl = \Yii::getAlias('@web');
@@ -33,8 +32,7 @@ if($id){
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
-              	<li class="active"><a href="#"><i class="fa fa-inbox"></i> ALL TYPE<span class="label label-warning pull-right">5</span></a></li>
-                <li class=""><a href="#"><i class="fa fa-inbox"></i> TYPE 1<span class="label label-warning pull-right">5</span></a></li>
+                <li class="active"><a href="#"><i class="fa fa-inbox"></i> TYPE 1<span class="label label-warning pull-right">5</span></a></li>
                 <li><a href="#"><i class="fa fa-envelope-o"></i> TYPE 2 <span class="label label-warning pull-right">10</span></a></li>
                 <li><a href="#"><i class="fa fa-file-text-o"></i> TYPE 3 <span class="label label-warning pull-right">120</span> </a></li>
               </ul>
@@ -70,7 +68,7 @@ if($id){
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);?>
+            <?php $form = ActiveForm::begin();?>
 			<div class="row">
 											<div class="col-md-6">
 												     <div class="form-group">
@@ -83,6 +81,20 @@ if($id){
 										                </div>
 										              </div>
 										         </div>
+											
+													<div class="col-md-6">
+												     <div class="form-group">
+													<label>Product Pic :    </label>
+													      <div class="input-group">
+										                  <div class="input-group-addon">
+										                    <i class="fa fa-clock-o"></i>
+										                  </div>
+															     <?= Html::activeInput('file', $model, 'productPic', ['id'=>'lastName','class' => 'form-control' , 'placeholder' => 'Product Pic..'])?>
+										                </div>
+										              </div>
+										         </div>
+											
+											
 												<div class="col-md-6">
 												     <div class="form-group">
 													<label>Product Detail :   </label>
@@ -116,29 +128,6 @@ if($id){
 										                  </div>
 															<?= Html::activeInput('text', $model, 'productQuantity', ['id'=>'email','class' => 'form-control', 'placeholder' => 'Product Quantity..'])?>
 										                </div>
-										              </div>
-										         </div>
-										         
-										    <div class="col-md-6">
-												     <div class="form-group">
-													<label>Product Type : </label>
-													      <div class="input-group">
-										                  <div class="input-group-addon">
-										                    <i class="fa fa-clock-o"></i>
-										                  </div>
-															<?= Html::activeDropDownList($model, 'productType',$arrType,['id'=>'email','class' => 'form-control select2 ', 'placeholder' => 'Product Quantity..'])?>
-										                </div>
-										              </div>
-										         </div>
-										         											
-													<div class="col-md-6">
-													 <div class="well text-center">
-													 <?= Html::img($model->getPhotoViewer(),['style'=>'width:100px;','class'=>'img-rounded']); ?>
-												        </div>
-												     <div class="form-group">
-													      <div class="input-group">
-										                   <?= $form->field($model, 'photo')->fileInput() ?>   
-										                   </div>
 										              </div>
 										         </div>
 					<div class="col-md-12">
