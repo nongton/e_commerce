@@ -23,13 +23,9 @@ class AppAsset extends AssetBundle
 	    	//	<!-- Bootstrap 3.3.6 -->
 	    	'bootstrap/css/bootstrap.min.css',
 	    	// <!-- Font Awesome -->
-	    	//'font-awesome.min.css',
+	    	'font-awesome.min.css',
 	    	//<!-- Ionicons -->
 	    	'ionicons.min.css',
-    		// <!-- fullCalendar 2.2.5-->
-    		'plugins/fullcalendar/fullcalendar.min.css',
-    		'plugins/fullcalendar/fullcalendar.print.css',
-    		
 	    	// <!-- Theme style -->
 	    	'dist/css/AdminLTE.min.css',
 	    	// <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -55,7 +51,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
     		//<!-- jQuery 2.2.3 -->
-    		//'plugins/jQuery/jquery-2.2.3.min.js',
+    		'plugins/jQuery/jquery-2.2.3.min.js',
     		//<!-- jQuery UI 1.11.4 -->
     		'jquery-ui.min.js',
     		//<!-- Bootstrap 3.3.6 -->
@@ -81,8 +77,6 @@ class AppAsset extends AssetBundle
     		'plugins/slimScroll/jquery.slimscroll.min.js',
     		//<!-- FastClick -->
     		'plugins/fastclick/fastclick.js',
-    		//<!-- iCheck -->
-    		'plugins/iCheck/icheck.min.js',
     		
     		//Data Table
     		'plugins/datatables/jquery.dataTables.min.js',
@@ -94,8 +88,10 @@ class AppAsset extends AssetBundle
     		//'dist/js/pages/dashboard.js',
     		//<!-- AdminLTE for demo purposes -->
     		'dist/js/demo.js',
+    		
     ];
     public $depends = [
         'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
     ];
 }

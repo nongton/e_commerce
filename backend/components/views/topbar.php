@@ -7,6 +7,7 @@ use app\Entity;
 use common\models\User;
 
 $baseUrl = \Yii::getAlias('@web');
+$urlFrontend = \Yii::$app->urlManagerFrontend->baseUrl;
 $user = Yii::$app->user->getIdentity();
 
 $str = <<<EOT
@@ -16,10 +17,8 @@ $this->registerJs($str);
 ?>
     <!-- Logo -->
     <a href="<?php echo $baseUrl; ?>" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>E</b>CM</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>E</b>Commerce</span>
+    
+       <img src="<?php echo $baseUrl; ?>/img/logob.jpg">
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -27,7 +26,9 @@ $this->registerJs($str);
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
-
+      <a href="<?php echo $urlFrontend; ?>" class="btn btn-default btn-flat" style="
+    margin-top: 6px;
+"> FrontEND</a>
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->

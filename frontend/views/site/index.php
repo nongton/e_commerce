@@ -2,6 +2,7 @@
  /* @var $this yii\web\View */
 $this->title = 'My Yii Application';
 ?>
+
 <div class="site-index">
 
     <div class="jumbotron">
@@ -11,7 +12,6 @@ $this->title = 'My Yii Application';
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">ระบบ ขายสินค้า</a></p>
     </div>
-
     <div class="body-content">
 
         <div class="row">

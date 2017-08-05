@@ -121,7 +121,12 @@ $this->registerJs($str, View::POS_LOAD, 'form-js');
                 <tr>
                   <td><span class="label label-success"><?php echo $data['Id']?></span></td>
                   <td><?php echo $data['productName']?></td>
-                  <td> </td>
+                  <td><?php	if($data['photo']){ ?>
+                      <img src="<?php echo $baseUrl;?>/upload/<?php echo $data['photo'];?>" data-holder-rendered="true" style="height: 50px; width: 50px; display: block;">
+                  <?php	}else { ?>
+                      <img src="<?php echo $baseUrl;?>/img/none.png" data-holder-rendered="true" style="height: 50px; width:50px; display: block;">
+                  <?php } ?>			
+                  </td>
                   <td><?php echo $data['productDetail']?></td>
                   <td><?php echo $data['productPrice']?></td>
                   <td><span class="label label-success"><?php echo $data['productQuantity']?></span> </td>

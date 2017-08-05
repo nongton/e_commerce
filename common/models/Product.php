@@ -10,7 +10,7 @@ use \yii\web\UploadedFile;
  *
  * @property integer $Id
  * @property string $productName
- * @photo string $photo
+ * @property string $photo
  * @property string $productDetail
  * @property string $productPrice
  * @property string $productQuantity
@@ -18,7 +18,7 @@ use \yii\web\UploadedFile;
  */
 class Product extends \yii\db\ActiveRecord
 {
-	public $upload_foler ='uploads';
+	public $upload_foler ='upload';
     /**
      * @inheritdoc
      */
@@ -34,11 +34,7 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['productName', 'productPrice', 'productQuantity'], 'required'],
-        	[['photo'], 'file',
-        				'skipOnEmpty' => true,
-        				'extensions' => 'png,jpg'
-        	],
-            [['productName', 'productDetail', 'productQuantity','productType'], 'string', 'max' => 200],
+            [['productName', 'productDetail', 'productQuantity','productType','photo'], 'string', 'max' => 200],
             [['productPrice'], 'string', 'max' => 50],
         ];
     }
@@ -58,33 +54,7 @@ class Product extends \yii\db\ActiveRecord
         	'productType' => 'Product Type'
         ];
     }
+
     
-    public function upload($model,$attribute)
-    {
-    	$photo  = UploadedFile::getInstance($model, $attribute);
-    	$path = $this->getUploadPath();
-    	if ($this->validate() && $photo !== null) {
-    		
-    		//$fileName = md5($photo->baseName.time()) . '.' . $photo->extension;
-    		$fileName = $photo->baseName . '.' . $photo->extension;
-    		
-    		if($photo->saveAs($path.$fileName)){
-    			return $fileName;
-    		}
-    	}
-    	return $model->isNewRecord ? false : $model->getOldAttribute($attribute);
-    }
-    
-    public function getUploadPath(){
-    	return Yii::getAlias('@webroot').'/'.$this->upload_foler.'/';
-    }
-    
-    public function getUploadUrl(){
-    	return Yii::getAlias('@web').'/'.$this->upload_foler.'/';
-    }
-    
-    public function getPhotoViewer(){
-    	return empty($this->photo) ? Yii::getAlias('@web').'/img/none.png' : $this->getUploadUrl().$this->photo;
-    }
-    
+  
 }

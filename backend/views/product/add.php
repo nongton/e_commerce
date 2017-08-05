@@ -8,6 +8,8 @@ use yii\web\View;
 use common\models\User;
 use common\models\Product;
 
+use kartik\file\FileInput;
+
 $this->title = "ADD NEWS  PRODUCT";
 $baseUrl = \Yii::getAlias('@web');
 $request = \Yii::$app->request;
@@ -132,15 +134,17 @@ if($id){
 										         </div>
 										         											
 													<div class="col-md-6">
-													 <div class="well text-center">
-													 <?= Html::img($model->getPhotoViewer(),['style'=>'width:100px;','class'=>'img-rounded']); ?>
-												        </div>
-												     <div class="form-group">
-													      <div class="input-group">
-										                   <?= $form->field($model, 'photo')->fileInput() ?>   
-										                   </div>
-										              </div>
-										         </div>
+														<?php	if($model->photo){ ?>
+														<img src="<?php echo $baseUrl;?>/upload/<?php echo $model->photo;?>" widt="200" height="200">
+														<?php	}else { ?>
+														<img src="<?php echo $baseUrl;?>/img/none.png" widt="200" height="200">
+														<?php } ?>
+														
+														<?php echo $form->field($model, 'photo')->widget(FileInput::classname(), [
+																'options' => ['accept' => 'image/*'],
+														]);
+														?>
+										      </div>
 					<div class="col-md-12">
 						<div class="form-actions fluid">
 							<div class="text-center">

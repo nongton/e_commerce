@@ -39,6 +39,13 @@ return [
     					'<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
     			],
     	],
+    		//can name it whatever you want as it is custom
+    		'urlManagerBackend' => [
+    				'class' => 'yii\web\urlManager',
+    				'baseUrl' => '/ecommerce/backend/web/',
+    				'enablePrettyUrl' => true,
+    				'showScriptName' => false,
+    		],
     ],
     'params' => $params,
 ];

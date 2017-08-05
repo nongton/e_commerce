@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+
 use Yii;
 use yii\helpers\Url;
 use yii\helpers\Html;
@@ -13,9 +14,10 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\data\Pagination;
 
-// use model frome table product 
+// use model frome table product
 use common\models\Product;
 use common\models\Producttype;
+
 
 /**
  * Product controller
@@ -35,11 +37,39 @@ class ProductController extends Controller
 			$model = new Product();
 			
 		}
-		if (\Yii::$app->request->isPost)
-		{
-			$model->Id= NULL;
-			$model->photo = $model->upload($model,'photo');
-			$model->attributes= $_POST['Product'];
+		if ($request->isPost) {
+			if(isset($_FILES["Product"]) && $_FILES["Product"]["error"]["photo"] == 0){
+				$allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
+				$filename = $_FILES["Product"]["name"]["photo"];
+				$filetype = $_FILES["Product"]["type"]["photo"];
+				$filesize = $_FILES["Product"]["size"]["photo"];
+				$file = $_FILES["Product"];
+				$fileNameServer = time().$_FILES["Product"]["name"]["photo"];
+				// Verify file extension
+				$ext = pathinfo($filename, PATHINFO_EXTENSION);
+				if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
+				// Verify file size - 5MB maximum
+				$maxsize = 5 * 1024 * 1024;
+				if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
+				
+				// Verify MYME type of the file
+				if(in_array($filetype, $allowed)){
+					// Check whether file exists before uploading it
+					move_uploaded_file($_FILES["Product"]["tmp_name"]["photo"], "upload/".$fileNameServer );
+					echo "Your file was uploaded successfully.";
+				} else{
+					echo "Error: There was a problem uploading your file. Please try again.";
+				}
+			} else{
+				echo "Error: " . $_FILES["Product"]["error"]["photo"];
+			}
+			$model->photo =$fileNameServer;
+			$model->productName = isset($_POST['Product']['productName'])?$_POST['Product']['productName']:'';
+			$model->productDetail = isset($_POST['Product']['productDetail'])?$_POST['Product']['productDetail']:'';
+			$model->productPrice = isset($_POST['Product']['productPrice'])?$_POST['Product']['productPrice']:0;
+			$model->productQuantity = isset($_POST['Product']['productQuantity'])?$_POST['Product']['productQuantity']:0;
+			$model->productType = isset($_POST['Product']['productType'])?$_POST['Product']['productType']:0;
+			
 			if($model->save()){
 				Ui::setMessage('บันทึกข้อมูลสำเร็จ','success');
 				return $this->redirect(Url::toRoute('product/list'));
