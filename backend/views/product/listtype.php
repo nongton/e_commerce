@@ -47,10 +47,10 @@ $this->registerJs($str, View::POS_LOAD, 'form-js');
 ?>
 
 
-<form  id="dataTable" action="<?php echo $baseUrl ;?>/product/list" method="POST">
+<form  id="dataTable" action="<?php echo $baseUrl ;?>/product/listtype" method="POST">
 <div class="row">
         <div class="col-md-3">
-          <a href="<?php echo $baseUrl ;?>/product/add" class="btn btn-primary btn-block margin-bottom">ADD NEWS PRODUCT</a>
+          <a href="<?php echo $baseUrl ;?>/product/addtype" class="btn btn-primary btn-block margin-bottom">ADD NEWS PRODUCT TYPE</a>
         </div>
         <!-- /.col -->
         <div class="col-md-9">
@@ -78,7 +78,8 @@ $this->registerJs($str, View::POS_LOAD, 'form-js');
                   <td><?php echo $data['typeDescription']?></td>
 
                   <td>
-                  <a href="<?php echo $baseUrl ;?>/product/deleteType?id=<?php echo $data['Id']; // ส่ง id ไปยัง actionDelete เพื่อลบสินค้าชิ้นนี้ ?>" class="btn btn-default btn-sm" ><i class="fa fa-trash-o"></i></a>
+                  <a href="<?php echo $baseUrl ;?>/product/deletetype?id=<?php echo $data['Id']; // ส่ง id ไปยัง actionDelete เพื่อลบสินค้าชิ้นนี้ ?>" class="btn btn-default btn-sm" ><i class="fa fa-trash-o"></i></a>
+                
                 </tr>
                 <?php endforeach; endif;?>
                 

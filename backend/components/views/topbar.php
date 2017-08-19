@@ -18,7 +18,7 @@ $this->registerJs($str);
     <!-- Logo -->
     <a href="<?php echo $baseUrl; ?>" class="logo">
     
-       <img src="<?php echo $baseUrl; ?>/img/logob.jpg">
+       <img src="<?php echo $baseUrl; ?>/img/ntfb.jpg">
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

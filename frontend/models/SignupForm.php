@@ -11,8 +11,11 @@ use Yii;
 class SignupForm extends Model
 {
     public $username;
+    public $firstName;
+    public $status;
     public $email;
     public $password;
+    
 
     /**
      * @inheritdoc
@@ -25,11 +28,18 @@ class SignupForm extends Model
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
+        	['firstName', 'filter', 'filter' => 'trim'],
+        	['firstName', 'required'],
+        	['firstName', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This firstName  has already been taken.'],
+        	['firstName', 'string', 'min' => 2, 'max' => 255],
+        		
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
+        	['status', 'required'],
+        	
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
         ];
@@ -42,16 +52,19 @@ class SignupForm extends Model
      */
     public function signup()
     {
-        if ($this->validate()) {
+        
             $user = new User();
             $user->username = $this->username;
+            $user->firstName = $this->firstName;
             $user->email = $this->email;
+            $user->status =  User::STATUS_ACTIVE;
+            $user->position = User::position_customer;
             $user->setPassword($this->password);
             $user->generateAuthKey();
-            $user->save();
-            return $user;
-        }
+            if($user->save()){
+            	return $user;
+            }
+            return null;
 
-        return null;
     }
 }

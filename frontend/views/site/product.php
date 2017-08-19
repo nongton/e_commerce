@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
  <div class="row">
 <div class ="col-md-2">
-<h3>ประเภทสินค้า</h3>
+<h3>Category</h3>
 <ul class="nav nav-pills nav-stacked">
 <li role="presentation" class="<?php if($baseUrl.'/site/product' == Url::current() ){ echo "active"; }?>" ><a href="<?php echo $baseUrl;?>/site/product">all Type</a></li>
 <?php if($lstProductType):
@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>This is the About page. You may modify the following file to customize its content:</p>
+    <p></p>
 
      <div class="row">
      <?php if($lstProduct):
@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			        <h3><?php echo $data['Id']?> - <?php echo $data['productName']?></h3>
 			        <p><?php echo $data['productDetail']?></p>
 			        <p><?php echo $data['productPrice']?></p>
-			        <p><a href="#" class="btn btn-primary" role="button">ซื้อ</a> <a href="#" class="btn btn-default" role="button">หยิบใส่ตะกร้า</a></p>
+			       <p><a href="<?php echo $baseUrl.'/order/add?op=cart&productId='.$data['Id'].'&price='.$data['productPrice'];?>" class="btn btn-primary" role="button">ซื้อ</a> <a href="<?php echo $baseUrl.'/order/add?productId='.$data['Id'].'&price='.$data['productPrice'];?>" class="btn btn-default" role="button">หยิบใส่ตะกร้า</a></p>
 			      </div>
 			    </div>
 			  </div>

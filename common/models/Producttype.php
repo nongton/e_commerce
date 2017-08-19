@@ -27,8 +27,7 @@ class Producttype extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Id', 'typeName', 'typeDescription'], 'required'],
-            [['Id'], 'integer'],
+            [['typeName',], 'required'],
             [['typeName'], 'string', 'max' => 50],
             [['typeDescription'], 'string', 'max' => 255],
         ];

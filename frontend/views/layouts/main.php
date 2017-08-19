@@ -5,10 +5,11 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
+use frontend\controllers\OrderController;
+use common\models\Order;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
-
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -26,7 +27,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => Html::img('@web/img/logo.jpg',['alt' => Yii::$app->name]),
+                'brandLabel' => Html::img('@web/img/ntf.jpg',['alt' => Yii::$app->name]),
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -43,6 +44,52 @@ AppAsset::register($this);
                 $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {
+                $identity = \Yii::$app->user->getIdentity();
+                $userId =  $identity->id;
+                $cartNum = 0;
+                $orderCart = [];
+                $arrCart = [];
+                $orderCart = OrderController::getOderBystatus(Order::STATUS_CART,$userId);
+                $arrProduct = OrderController::getProduct();
+                $productDetail = [];
+                foreach($orderCart as $dataCart){
+                    if($dataCart["productId"]){
+                    	
+                    	$productDetail = isset($arrProduct[$dataCart["productId"]])?$arrProduct[$dataCart["productId"]]:'ไม่มีสินค้า';
+                        $arrCart[$dataCart["productId"]]["numProduct"][] = $dataCart;
+                        $arrCart[$dataCart["productId"]]["productDetail"] = $productDetail;
+                    }
+                }
+                $cartNum = count($orderCart); 
+                if($arrCart){
+                $menuItemsCart = "";
+                foreach ($arrCart as $index=>$data){
+                    $qty = count($data['numProduct']);
+                    $price = isset($data['productDetail']["productPrice"])?$data['productDetail']["productPrice"]:'ไม่มีสินค้า';
+                    $total = $qty * $price;
+                    $arrTotal[] = $total;
+                    $arrQty[] = $qty;
+                    $oderNum = $data['numProduct'][0]["oderNum"];
+                    $menuItemsCart .='<li class="dropdown-header " style="text-align:right">'.$data['productDetail']["productName"].' * '.$qty.' = '.number_format($total, 2, '.', '').' บาท </li>';
+                }
+                $sumTotal =  array_sum($arrTotal); 
+                $menuItemsCart.='<li class="dropdown-header"  style="text-align:right"> รวม '.number_format($sumTotal, 2, '.', '').' บาท </li>';
+                
+                }else {
+                    $menuItemsCart = '<li class="dropdown-header "style="text-align:right">ไม่มีสินค้าในตะกร้า</li>';
+                }
+                
+                
+                $menuItems[] = [
+                    'label' => 'Cart (' .$cartNum . ')',
+                    'items' => [
+                        $menuItemsCart,
+                        '<li class="divider"></li>',
+                        ['label' => 'ไปยังตะกร้าสินค้า', 'url' => ['/order/cart'], 'options' => ['style' => 'background-color: #e3f2fd;'],],
+                        ['label' => 'ไปยังหน้า Checkout', 'url' => ['/order/checkout'], 'options' => ['style' => 'background-color: #e3f2fd;'],],
+                    ],
+                ];
+                
                 $menuItems[] = [
                     'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
@@ -55,8 +102,20 @@ AppAsset::register($this);
             ]);
             NavBar::end();
         ?>
-
+        
         <div class="container">
+        <div class="row">
+        <div class="span12">
+            <form id="custom-search-form" class="form-search form-horizontal pull-right">
+                <div class="input-append span12">
+                    <input type="text" class="search-query" placeholder="Search">
+                    <button type="submit" class="btn"><i class="glyphicon glyphicon-search"></i></button>
+                	
+                </div>
+            </form>
+        </div>
+	</div>
+	</br>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
