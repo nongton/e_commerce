@@ -34,11 +34,12 @@ address{
 <div class="container" id='DivIdToPrint'>
     	<div class="row">
     		<div class="span4">
-                <img src="//placehold.it/170x40" class="img-rounded logo">
+                <i mg src="//placehold.it/170x40" class="img-rounded logo">
+                <br>
     			<address>
-			        <strong>ACME, Inc.</strong><br>
-			        P.O Box 3171<br>
-			        Kent, WA 98089<br>
+			        <strong>NTF</strong><br>
+			        Bangkok <br>
+			        Thailand<br>
 		    	</address>
     		</div>
     		<div class="span4 well">
@@ -163,10 +164,10 @@ address{
   		        <strong>Phone:</strong> <a href="tel:555-555-5555">555-555-5555</a>
   	    	</div>
   	    	<div class="span3">
-  		        <strong>Email:</strong> <a href="mailto:hello@5marks.co">hello@bootply.com</a>
+  		        <strong>Email:</strong> <a href="mailto:hello@5marks.co">ntf@hotmail.com</a>
   	    	</div>
   	    	<div class="span3">
-  		        <strong>Website:</strong> <a href="http://5marks.co">http://bootply.com</a>
+  		        <strong>Website:</strong> <a href="http://5marks.co">www.ntf.com</a>
   	    	</div>
   		</div>
     </div>

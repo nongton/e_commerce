@@ -56,7 +56,7 @@ $this->registerJs($str);
         </li>
         <li class="active treeview">
           <a href="#">
-            <i class="fa   fa-edit "></i> <span>Customer Setting</span>
+            <i class="fa   fa-edit "></i> <span>Administrator Setting</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -66,7 +66,7 @@ $this->registerJs($str);
             <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/user/list"><i class="fa fa-circle-o"></i> User</a></li>
           </ul>
         </li>
-        <li class="active treeview">
+  <li class="active treeview">
           <a href="#">
             <i class="fa   fa-edit "></i> <span>Data Setting</span>
             <span class="pull-right-container">
@@ -74,20 +74,11 @@ $this->registerJs($str);
             </span>
           </a>
           <ul class="treeview-menu">
-          
             <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/list"><i class="fa fa-circle-o"></i> Product</a></li>
-          </ul>
-          <ul class="treeview-menu">
-          
             <li class="<?php if($baseUrl.'/product/listtype' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/listtype"><i class="fa fa-circle-o"></i> Product Type</a></li>
-          </ul>
-          <ul class="treeview-menu">
-          
             <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/user/list"><i class="fa fa-circle-o"></i> Payment</a></li>
-          </ul>
-          <ul class="treeview-menu">
-          
             <li class="<?php if($baseUrl.'/product/listorder' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/listorder"><i class="fa fa-circle-o"></i> Order</a></li>
+            <li class="<?php if($baseUrl.'/stock/index' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/stock/index"><i class="fa fa-circle-o"></i> Stock</a></li>
           </ul>
         </li>
         <li class="active treeview">
@@ -98,25 +89,11 @@ $this->registerJs($str);
             </span>
           </a>
           <ul class="treeview-menu">
-          
-            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/list"><i class="fa fa-circle-o"></i> Customer</a></li>
+            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/olap_ecommerch"  target="_bank"><i class="fa fa-circle-o"></i> OLAP</a></li>
+            <li class="<?php if($baseUrl.'/report/index' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/report/index"><i class="fa fa-circle-o"></i>Stock report</a></li>
+            <li class="<?php if($baseUrl.'/report/sales' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/report/sales"><i class="fa fa-circle-o"></i>Sales report</a></li>
+            <li class="<?php if($baseUrl.'/report/customer' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/report/customer"><i class="fa fa-circle-o"></i>customer report</a></li>
           </ul>
-          <ul class="treeview-menu">
-          
-            <li class="<?php if($baseUrl.'/product/list' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/list"><i class="fa fa-circle-o"></i>Product</a></li>
-          </ul>
-          <ul class="treeview-menu">
-          
-            <li class="<?php if($baseUrl.'/product/listtype' == Url::current() ){ echo "active"; } ?>"><a href="<?php echo $baseUrl; ?>/product/listtype"><i class="fa fa-circle-o"></i>Product Type</a></li>
-          </ul>
-          <ul class="treeview-menu">
-         
-        </li>
-       
-        
-
-
-        
       </ul>
     </section>
     <!-- /.sidebar -->

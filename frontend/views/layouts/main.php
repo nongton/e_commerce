@@ -126,8 +126,8 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-        <p class="pull-left">&copy; NTF Company <?= date('Y') ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-left">&copy; XXX Company <?= date('Y') ?></p>
+        <p class="pull-right">XXX</p>
         </div>
     </footer>
 
