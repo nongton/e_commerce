@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
@@ -19,6 +20,13 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
+    <style>
+#searchform{
+	    float: right;
+}
+</style>
+    
+    
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
@@ -106,16 +114,19 @@ AppAsset::register($this);
         <div class="container">
         <div class="row">
         <div class="span12">
-            <form id="custom-search-form" class="form-search form-horizontal pull-right">
-                <div class="input-append span12">
-                    <input type="text" class="search-query" placeholder="Search">
-                    <button type="submit" class="btn"><i class="glyphicon glyphicon-search"></i></button>
-                	
+             <?php $form =  ActiveForm::begin(['id' => 'searchform' ,'class' => 'form-search form-horizontal pull-right', 'method' => 'post','action' => ['site/search'],'options' => ['enctype' => 'multipart/form-data']]);
+
+     		 ?>
+     		 <div class="box-tools pull-right">
+                <div class="has-feedback">
+                  <input type="text" name = "text" class="form-control input-sm" placeholder="Search" value="<?php  isset($text)?$text:' '; ?>">
+                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
                 </div>
-            </form>
+              </div>
+            <?php ActiveForm::end() ?>
         </div>
 	</div>
-	</br>
+	<br />
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

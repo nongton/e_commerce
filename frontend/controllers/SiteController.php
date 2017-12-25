@@ -158,6 +158,53 @@ class SiteController extends Controller
     	]);
     }
 
+    
+    public function actionSearch()
+    {
+    	$request = \Yii::$app->request;
+    	$text = $request->post('text','');
+    	$type = $request->get('type','');
+    	
+    	//  query data all product Type
+    	$productTypeQuery = Producttype::find();
+    	$productTypeQuery->orderBy(['id' => SORT_ASC]);
+    	$lstProductType = $productTypeQuery->all();
+    	
+    	
+    	// query data all product  frome product table
+    	$productQuery = Product::find();
+    	if(!empty($type)){
+    		$productQuery->andWhere(['productType' => $type]);
+    	}
+    	if(!empty($text)){
+    		$productQuery->andWhere(['LIKE' ,'productName',$text]);
+    		$productQuery->orWhere(['LIKE' ,'productDetail',$text]);
+    	}
+    	$productQuery->orderBy(['id' => SORT_ASC]);  // sort by id
+    	
+    	// add Pagination
+    	$pagination = new Pagination([
+    			'defaultPageSize' => 8, // set per page
+    			'totalCount' => $productQuery->count(),
+    	]);
+    	
+    	$lstProduct= $productQuery->orderBy('id ASC')
+    	->offset($pagination->offset)
+    	->limit($pagination->limit)
+    	->all();
+    	$pagination->params = ['page'=> $pagination->page];
+    	
+    	//var_dump($objProduct); exit();
+    	
+    	return $this->render('search',[
+    			'text' => $text,
+    			'lstProduct'=>$lstProduct,
+    			'lstProductType'=>$lstProductType,
+    			'pagination'=>$pagination,
+    			
+    	]);
+    }
+    
     public function actionSignup()
     {
         $model = new SignupForm();
